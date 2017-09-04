@@ -29,6 +29,14 @@ This version of `akka-persistence-cassandra` depends on Akka 2.5.1. It has been 
 
 Those versions are compatible with Cassandra 3.0.0 or higher, and it is also compatible with Cassandra 2.1.6 or higher (versions < 2.1.6 have a static column bug) if you configure `cassandra-journal.cassandra-2x-compat=on` in your `application.conf`. With Cassandra 2.x compatibility some features will not be enabled, e.g. `eventsByTag`.
 
+### jnr-posix
+
+The transitive dependency from `cassandra-driver-core` to [jnr-posix](https://github.com/jnr/jnr-posix) (3.0.27) has been excluded to avoid GPL/LGPL licensing. It is also licensed as Eclipse Public License version 1.0, but we prefer to exclude it.
+
+The purpose of jnr-posix in cassandra-driver-core is to generate higher granularity timestamps and it's optional, see https://groups.google.com/a/lists.datastax.com/forum/#!topic/java-driver-user/ONpgXJyqTu0
+
+You can add the dependency to `"com.github.jnr" % "jnr-posix" % "3.0.27"` to your build to take advantage of it.
+
 Journal plugin
 --------------
 

@@ -7,7 +7,8 @@ import sbtassembly.AssemblyPlugin.autoImport._
 val AkkaVersion = "2.5.4"
 
 val akkaPersistenceCassandraDependencies = Seq(
-  "com.datastax.cassandra"  % "cassandra-driver-core"               % "3.2.0",
+  // jnr-posix excluded to avoid GPL/LGPL licensing, see README
+  "com.datastax.cassandra"  % "cassandra-driver-core"               % "3.2.0" exclude("com.github.jnr", "jnr-posix"),
   "com.typesafe.akka"      %% "akka-persistence"                    % AkkaVersion,
   "com.typesafe.akka"      %% "akka-cluster-tools"                  % AkkaVersion,
   "com.typesafe.akka"      %% "akka-persistence-query"              % AkkaVersion,
